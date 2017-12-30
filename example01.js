@@ -1,73 +1,39 @@
-var booksArray = ["Great Expectations", "The Remains of the Day", "Peter Pan"];
-var myBox = {
-  height: 6,
-  width: 8,
-  length: 10,
-  volume: 480,
-  material: "cardboard",
-  contents: booksArray
+var aquarium = {
+  Nemo: { type: "fish", species: "clownfish", length: 3.7 },
+  Marlin: { type: "fish", species: "clownfish", length: 4.1 },
+  Dory: { type: "fish", species: "blue tang", length: 6.2 },
+  Peach: { type: "echinoderm", species: "starfish", length: 5.3 },
+  "Color Castle": { type: "einvironment", species: "coquina", moves: false },
+  "Dragon Statue": { type: "einvironment", material: "plastic", moves: false },
+  
+  addCritter: function (name, type, species, length) {
+    this[name] = { type: type, species: species, length: length };
+  }
 };
 
-console.log(myBox.width);
-console.log(myBox.material);
-console.log(myBox.contents);
 
-myBox.width = 12;
-console.log(myBox.width);
-console.log(myBox);
+// function addCritter(container, name, type, species, length) {
+//   container[name] = { type: type, species: species, length: length };
+// }
+// 
+// function addToy(container, name, type, material, moves) {
+//   container[name] = { type: type, material: material, moves: moves };
+// }
 
-myBox.volume = myBox.height * myBox.width * myBox.length;
-console.log(myBox);
+console.log(aquarium);
+aquarium.addCritter("Bubbles", "fish", "yellow tang", 5.6);
+console.log(aquarium);
 
-myBox.contents.push("On The Road");
-console.log(myBox)
-console.log(booksArray);
-
-myBox.weight = 24;
-console.log(myBox);
-
-myBox.destination1 = "Orlando";
-myBox.destination2 = "Miami";
-
-console.log(myBox);
-
-console.log(myBox["volume"]);
-console.log(myBox["material"]);
-
-myBox["# of stops"] = 2;
-console.log(myBox);
-
-console.log(myBox["# of stops"]);
-
-
-for (var i = 1; i <= myBox["# of stops"]; i++) {
-  console.log(myBox["destination"+i]);
+aquarium.takeout = function (name) {
+  this[name].name = name;
+  var temp = this[name];
+  delete this[name];
+  return temp;
 }
 
-delete myBox.contents;
-console.log(myBox);
+var fishOutofWater = aquarium.takeout("Marlin");
+console.log(fishOutofWater);
+console.log(aquarium);
 
-console.log(booksArray);
-
-console.log(delete myBox.nonExistentProperty);
-
-myBox["# of Books"] = 0;
-console.log(myBox);
-
-
-function addBook(box, name, writer) {
-  box["# of Books"]++;
-  box["book" + box["# of Books"]] = {title: name, author: writer}
-   
-}
-
-console.log(myBox);
-addBook(myBox, "Great Expectations", "Charles Dickens");
-console.log(myBox["book" + myBox["# of Books"]]);
-console.log(myBox);
-addBook(myBox, "The Remains of the Day", "Kazu Ishiguro");
-addBook(myBox, "Peter Pan", "J. M. Barrie");
-console.log(myBox);
-addBook(myBox, "On the Road", "Jack Kerouac");
-console.log(myBox.book1.title);
-console.log(myBox["book3"]["author"]);
+var toy = aquarium.takeout("Dragon Statue");
+console.log(toy);
