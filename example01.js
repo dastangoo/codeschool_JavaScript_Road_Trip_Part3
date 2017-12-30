@@ -11,19 +11,6 @@ var aquarium = {
   }
 };
 
-
-// function addCritter(container, name, type, species, length) {
-//   container[name] = { type: type, species: species, length: length };
-// }
-// 
-// function addToy(container, name, type, material, moves) {
-//   container[name] = { type: type, material: material, moves: moves };
-// }
-
-console.log(aquarium);
-aquarium.addCritter("Bubbles", "fish", "yellow tang", 5.6);
-console.log(aquarium);
-
 aquarium.takeout = function (name) {
   this[name].name = name;
   var temp = this[name];
@@ -31,9 +18,16 @@ aquarium.takeout = function (name) {
   return temp;
 }
 
-var fishOutofWater = aquarium.takeout("Marlin");
-console.log(fishOutofWater);
-console.log(aquarium);
+aquarium.countFish = function () {
+  var numFish = 0;
+  for (key in this) {
+    if (this[key].type == "fish") {
+      numFish++;
+    }
+  }
+  return numFish;
+}
 
-var toy = aquarium.takeout("Dragon Statue");
-console.log(toy);
+var poorDoory = aquarium.takeout("Dory");
+console.log(poorDoory);
+console.log(aquarium.countFish());
