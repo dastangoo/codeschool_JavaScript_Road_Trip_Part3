@@ -5,7 +5,6 @@ function Shoe(shoeSize, shoeColor, forGender, constructStyle) {
   this.construction = constructStyle;
 }
 
-var beachShoe = new Shoe(10, "blue", "women", "flipflop");
 // beachShoe.putOn();
 
 // Shoe.prototype = {
